@@ -44,6 +44,7 @@ public class FPQuarantineLabelIO extends JFrame {
 	private JTextField FPQuarantine_palletQuantity;
 	private List<Product> products;
 	private JTextField FPQuarantine_printQuantity;
+	private String itemquantity;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public FPQuarantineLabelIO(Settings settings, PrintingQueue printqueue) {
@@ -194,6 +195,24 @@ public class FPQuarantineLabelIO extends JFrame {
 		FPQuarantine_btn_settings.setBounds(130, 360, 80, 20);
 		contentPane.add(FPQuarantine_btn_settings);
 		
+		Button FPQuarantine_btn_check = new Button("Check");
+		FPQuarantine_btn_check.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String itemCode_value = FPQuarantine_itemCode.getText().replaceAll("([a-z])", "$1").toUpperCase();
+				for(Product product : products) {
+		        	if(product.getItemCode().replaceAll("([a-z])", "$1").toUpperCase().equals(itemCode_value)) {
+		        		FPQuarantine_ProductName.setSelectedItem(product.getProductName());
+		        		FPQuarantine_itemCode.setText(product.getItemCode());
+		        		product.getCompanyName(); 
+		        		itemquantity = product.getItemQuantity();
+		        		break;
+		        	}	        	
+		        }
+			}
+		});
+		FPQuarantine_btn_check.setBounds(330, 120, 60, 20);
+		contentPane.add(FPQuarantine_btn_check);
+		
 		JButton FPQuarantine_btn_print = new JButton("Print");
 		FPQuarantine_btn_print.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		FPQuarantine_btn_print.addActionListener(new ActionListener() {
@@ -201,7 +220,7 @@ public class FPQuarantineLabelIO extends JFrame {
 				if(dataValidation(FPQuarantine_itemCode.getText(), FPQuarantine_ProductName.getSelectedItem().toString(), FPQuarantine_batch.getText(), FPQuarantine_startFrom.getText(), FPQuarantine_labelPerPallet.getText(), FPQuarantine_palletQuantity.getText(), settings)){
 					int startFrom = Integer.valueOf(FPQuarantine_startFrom.getText());
 					for(int quantity = 0; quantity < Integer.valueOf(FPQuarantine_palletQuantity.getText()); quantity ++) {						
-						Label label = new FPQuarantineLabel(FPQuarantine_labelType.getSelectedItem().toString(), FPQuarantine_itemCode.getText(), FPQuarantine_ProductName.getSelectedItem().toString(), FPQuarantine_batch.getText(), FPQuarantine_printQuantity.getText(),  String.valueOf(startFrom));
+						Label label = new FPQuarantineLabel(FPQuarantine_labelType.getSelectedItem().toString(), FPQuarantine_itemCode.getText(), FPQuarantine_ProductName.getSelectedItem().toString(), FPQuarantine_batch.getText(), itemquantity,  String.valueOf(startFrom));
 						for(int labelPerPallet=0; labelPerPallet<Integer.valueOf(FPQuarantine_labelPerPallet.getText()); labelPerPallet++) {
 							printqueue.addLabelToQueue(label);
 						}						
@@ -244,22 +263,6 @@ public class FPQuarantineLabelIO extends JFrame {
 		label_1.setBounds(244, 385, 170, 20);
 		contentPane.add(label_1);
 		
-		Button FPQuarantine_btn_check = new Button("Check");
-		FPQuarantine_btn_check.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String itemCode_value = FPQuarantine_itemCode.getText().replaceAll("([a-z])", "$1").toUpperCase();
-				for(Product product : products) {
-		        	if(product.getItemCode().replaceAll("([a-z])", "$1").toUpperCase().equals(itemCode_value)) {
-		        		FPQuarantine_ProductName.setSelectedItem(product.getProductName());
-		        		FPQuarantine_itemCode.setText(product.getItemCode());
-		        		product.getCompanyName(); 
-		        		break;
-		        	}	        	
-		        }
-			}
-		});
-		FPQuarantine_btn_check.setBounds(330, 120, 60, 20);
-		contentPane.add(FPQuarantine_btn_check);
 		
 		JButton FPQuarantine_btn_update = new JButton("UpdateDB");
 		FPQuarantine_btn_update.setFont(new Font("Tahoma", Font.PLAIN, 10));

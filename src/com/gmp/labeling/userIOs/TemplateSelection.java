@@ -183,6 +183,8 @@ public class TemplateSelection extends JFrame {
                   case "SachetSemiProductLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetsemi"))));               	  
                 	  break;
+                  case "ProductionInProcessLabel":
+                	  break;
 		        	  
 		    }
 		}
@@ -276,6 +278,8 @@ public class TemplateSelection extends JFrame {
                 	  break; 
                   case "SachetSemiProductLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetsemi"))));       
+                	  break;
+                  case "ProductionInProcessLabel":
                 	  break;
 		    }
 			}
@@ -493,7 +497,14 @@ public class TemplateSelection extends JFrame {
 			                	  sachetsemiproduct.setLocationRelativeTo(null);
 			                	  sachetsemiproduct.setVisible(true);
 			                	  dispose();
-			                	  break;			                	  
+			                	  break;
+			                  case "ProductionInProcessLabel":
+			                	  ProductionInProcessLabelIO productioninprocess = new ProductionInProcessLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(productioninprocess);
+			                	  productioninprocess.setLocationRelativeTo(null);
+			                	  productioninprocess.setVisible(true);
+			                	  dispose();
+			                	  break;
 					    }
 					}
 			}

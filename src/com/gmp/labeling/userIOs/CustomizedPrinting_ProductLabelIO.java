@@ -27,7 +27,6 @@ import com.gmp.labeling.connections.RestConnection;
 import com.gmp.labeling.models.Material;
 import com.gmp.labeling.printModels.Label;
 import com.gmp.labeling.printModels.PrintingQueue;
-import com.gmp.labeling.printModels.ProductLabel;
 import java.awt.Canvas;
 
 public class CustomizedPrinting_ProductLabelIO extends JFrame {
