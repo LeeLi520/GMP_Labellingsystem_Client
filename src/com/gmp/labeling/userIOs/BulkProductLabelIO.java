@@ -53,6 +53,7 @@ public class BulkProductLabelIO extends JFrame {
 	private JTextField bulkProduct_cartonQuantity;
 	private String format;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public BulkProductLabelIO(Settings settings, PrintingQueue printqueue) {
 		RestConnection connection = new RestConnection();
 		setTitle("Labeling System version"+connection.loadProperties().getProperty("version"));
@@ -154,10 +155,6 @@ public class BulkProductLabelIO extends JFrame {
 		JLabel bulkProduct_lbl_useBy = new JLabel("DOM:");
 		bulkProduct_lbl_useBy.setBounds(60, 180, 100, 20);
 		contentPane.add(bulkProduct_lbl_useBy);
-		
-		ButtonGroup useByformatGroup = new ButtonGroup();
-		
-		
 		
 		bulkProduct_useBy = new JTextField();
 		bulkProduct_useBy.setBounds(160, 180, 180, 20);
