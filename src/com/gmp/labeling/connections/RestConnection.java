@@ -418,8 +418,8 @@ public class RestConnection {
 
 		try {
 
-//			input = new FileInputStream("Datafiles/properties/config.properties");
-			input = new FileInputStream(".\\src\\com\\gmp\\labeling\\resources\\properties\\config.properties");
+			input = new FileInputStream("Datafiles/properties/config.properties");
+//			input = new FileInputStream(".\\src\\com\\gmp\\labeling\\resources\\properties\\config.properties");
 			// load a properties file
 			prop.load(input);
 			// get the property value and print it out

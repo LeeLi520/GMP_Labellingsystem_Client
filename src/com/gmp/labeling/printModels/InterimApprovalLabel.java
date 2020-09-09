@@ -120,7 +120,7 @@ public class InterimApprovalLabel extends Label {
 	             "^FDINTERIM APPROVAL^FS"+
 	             "^FO20,75"+ 
 	             "^A@N,35,42,E:ARI002.TTF"+ 
-	             "^FDThis raw material has been conditionary released^FS"+
+	             "^FDThis raw material has been conditionally released^FS"+
 	             "^FO50,120"+ 
 	             "^A0N,38,50"+
 	             "^FDAPPROVAL FROM QA IS REQUIRED^FS"+

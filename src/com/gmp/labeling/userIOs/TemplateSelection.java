@@ -185,7 +185,21 @@ public class TemplateSelection extends JFrame {
                 	  break;
                   case "ProductionInProcessLabel":
                 	  break;
-		        	  
+                  case "QAReleaseForSupply":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qareleaseforsupply"))));  
+                      break;
+                  case "QAReleaseToSponsor":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qareleasetosponsor"))));  
+                      break;
+                  case "QAApprovedForFurtherProcessing":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qaapprovedforfprocess"))));  
+                      break;   	
+                  case "LiquidShipperLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("liquidshipper"))));  
+                  	  break;
+                  case "BulkShipping":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("bulkshipper")))); 
+                	  break;
 		    }
 		}
 				
@@ -280,6 +294,21 @@ public class TemplateSelection extends JFrame {
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetsemi"))));       
                 	  break;
                   case "ProductionInProcessLabel":
+                	  break;
+                  case "QAReleaseForSupply":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qareleaseforsupply"))));  
+                      break;
+                  case "QAReleaseToSponsor":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qareleasetosponsor"))));  
+                      break;
+                  case "QAApprovedForFurtherProcessing":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("qaapprovedforfprocess"))));  
+                      break;   
+                  case "LiquidShipperLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("liquidshipper"))));  
+                  	  break;
+                  case "BulkShipping":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("bulkshipper")))); 
                 	  break;
 		    }
 			}
@@ -503,6 +532,41 @@ public class TemplateSelection extends JFrame {
 			                	  settings.setComponentPage(productioninprocess);
 			                	  productioninprocess.setLocationRelativeTo(null);
 			                	  productioninprocess.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "QAReleaseForSupply":
+			                	  QA_ReleaseForSupplyLabelIO qa_releaseforsupply = new QA_ReleaseForSupplyLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(qa_releaseforsupply);
+			                	  qa_releaseforsupply.setLocationRelativeTo(null);
+			                	  qa_releaseforsupply.setVisible(true);
+			                	  dispose();
+			                      break;
+			                  case "QAReleaseToSponsor":
+			                	  QA_ReleaseToSponsorLabelIO qa_releasetosponsor = new QA_ReleaseToSponsorLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(qa_releasetosponsor);
+			                	  qa_releasetosponsor.setLocationRelativeTo(null);
+			                	  qa_releasetosponsor.setVisible(true);
+			                	  dispose();
+			                      break;
+			                  case "QAApprovedForFurtherProcessing":
+			                	  QA_ApprovedForFProcessLabelIO qa_approvedforfprocess = new QA_ApprovedForFProcessLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(qa_approvedforfprocess);
+			                	  qa_approvedforfprocess.setLocationRelativeTo(null);
+			                	  qa_approvedforfprocess.setVisible(true);
+			                	  dispose();
+			                      break;  
+			                  case "LiquidShipperLabel":
+			                	  LiquidShipperLabelIO liquidshipperlabel = new LiquidShipperLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(liquidshipperlabel);
+			                	  liquidshipperlabel.setLocationRelativeTo(null);
+			                	  liquidshipperlabel.setVisible(true);
+			                	  dispose();
+			                  	  break;
+			                  case "BulkShipping":
+			                	  BulkProductLabelIO bulkproductlabel = new BulkProductLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(bulkproductlabel);
+			                	  bulkproductlabel.setLocationRelativeTo(null);
+			                	  bulkproductlabel.setVisible(true);
 			                	  dispose();
 			                	  break;
 					    }

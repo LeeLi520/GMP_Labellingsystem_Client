@@ -2,43 +2,29 @@ package com.gmp.labeling.printModels;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.DecimalFormat;
 
 public class BulkProductLabel extends Label {
 	
-	private String companyName;
 	private String productName;
 	private String itemCode;
 	private String batch;
 	private String quantity;
 	private String cartonNo;
-	private String usebyformat;
 	private String useBy;
 	private String temperature;
-	private String packedBy;
 	
 
-	public BulkProductLabel(String companyName, String productName, String itemCode, String batch, String quantity,
-			String cartonNo, String usebyformat, String useBy, String temperature, String packedBy) {
+	public BulkProductLabel(String productName, String itemCode, String batch, String quantity,
+			String cartonNo, String useBy, String temperature) {
 		super();
-		this.companyName = companyName;
 		this.productName = productName;
 		this.itemCode = itemCode;
 		this.batch = batch;
 		this.quantity = quantity;
 		this.cartonNo = cartonNo;
-		this.usebyformat = usebyformat;
 		this.useBy = useBy;
 		this.temperature = temperature;
-		this.packedBy = packedBy;
-
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
 	}
 
 	public String getProductName() {
@@ -81,14 +67,6 @@ public class BulkProductLabel extends Label {
 		this.cartonNo = cartonNo;
 	}
 
-	public String getUsebyformat() {
-		return usebyformat;
-	}
-
-	public void setUsebyformat(String usebyformat) {
-		this.usebyformat = usebyformat;
-	}
-
 	public String getUseBy() {
 		return useBy;
 	}
@@ -105,15 +83,6 @@ public class BulkProductLabel extends Label {
 		this.temperature = temperature;
 	}
 
-	public String getPackedBy() {
-		return packedBy;
-	}
-
-	public void setPackedBy(String packedBy) {
-		this.packedBy = packedBy;
-	}
-
-
 	@Override
 	public String toString() {
 		String printMachineName = null;
@@ -128,8 +97,7 @@ public class BulkProductLabel extends Label {
 			System.out.println("Unable to access machine name and ip.");
 		}
 		String log ="{"
-				+ "{labeltype:\"UniversalProductLabel\"},"
-				+ "{companyName:\""+companyName+"\"},"
+				+ "{labeltype:\"BulkShipperLabel\"},"
 				+ "{productName:\""+productName+"\"},"
 				+ "{itemCode:\""+itemCode+"\"},"
 				+ "{batch:\""+batch+"\"},"
@@ -137,7 +105,6 @@ public class BulkProductLabel extends Label {
 				+ "{cartonNo:\""+cartonNo+"\"},"
 				+ "{useBy:\""+useBy+"\"},"
 				+ "{temperature:\""+ temperature +"\"},"
-				+ "{packedBy:\""+packedBy+"\"},"
 				+ "{printMachineName:\""+printMachineName+"\"},"
 		        + "{printMachineIp:\""+printMachineIP+"\"}"
 				+ "}";
@@ -156,83 +123,108 @@ public class BulkProductLabel extends Label {
     	 		+ "^FO28,52,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF"
     	 		+ "^FDProduct:^FS"
-    	 		+ "^FO152,20"
-    	 		+ "^GB638,95,4^FS";
-    	 		
+    	 		+ "^FO200,20"
+    	 		+ "^GB560,95,4^FS";		
 		
-		int Com_upperCaseCount = 0;
-		int Com_lowerCaseCount = 0;
-		int Com_numberCount = 0;
-		int Com_spaceCount = 0;
-		
-		for(int i = 0; i < companyName.length(); i++) {
-			if(Character.isUpperCase(companyName.charAt(i))) {
-				Com_upperCaseCount++;
-			}
-			if(Character.isLowerCase(companyName.charAt(i))) {
-				Com_lowerCaseCount++;
+	    if(productName.length()>42) {
+		    String line_1;
+		    String line_2;
+		    int i = 42;
+		    char temp = productName.charAt(i);
+		    while(temp!=' ') {
+		     i--;
+		     if(i<0) {
+		     	break;
+		     }else {
+		     temp = productName.charAt(i);
+		     }
+		    }
+		    if(i == -1) {
+		     line_1 = productName.substring(0,42);
+		     line_2 = productName.substring(43,productName.length());
+		    }else {
+		     line_1 = productName.substring(0, i);
+		     line_2 = productName.substring(i+1, productName.length());
+		    }
+		    
+			int upperCaseCount = 0;
+			int lowerCaseCount = 0;
+			int numberCount = 0;
+			int spaceCount = 0;
+			
+			for(int j = 0; j < line_2.length(); j++) {
+				if(Character.isUpperCase(line_2.charAt(j))) {
+					upperCaseCount++;
+				}
+				if(Character.isLowerCase(line_2.charAt(j))) {
+					lowerCaseCount++;
+				}
+				
+				if(Character.isDigit(line_2.charAt(j))) {
+					numberCount++;
+				}
+				if(Character.isSpace(line_2.charAt(j))) {
+					spaceCount++;
+				}
 			}
 			
-			if(Character.isDigit(companyName.charAt(i))) {
-				Com_numberCount++;
-			}
-			if(Character.isSpace(companyName.charAt(i))) {
-				Com_spaceCount++;
-			}
-		}
-		
-		double Com_total = (Com_upperCaseCount*upperWeight)+(Com_lowerCaseCount*lowerWeight)+(Com_numberCount*numberWeight)+(Com_spaceCount*spaceWeight);
-		int Com_dots = (int)((1.05 - Com_total)*598.0/2.0);
-		
-		    s +=   "^FO"+(120 + Com_dots)+",30,0"
-	    	 	 + "^A@N,38,38,E:ARI004.TTF" 
-	    	 	 + "^FD"+ companyName +"^FS";
-		
-		
-		int upperCaseCount = 0;
-		int lowerCaseCount = 0;
-		int numberCount = 0;
-		int spaceCount = 0;
-		for(int i = 0; i < productName.length(); i++) {
-			if(Character.isUpperCase(productName.charAt(i))) {
-				upperCaseCount++;
-			}
-			if(Character.isLowerCase(productName.charAt(i))) {
-				lowerCaseCount++;
-			}
+			double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
+			int dots = (int)((1.0 - total)*648.0/2.0);
 			
-			if(Character.isDigit(productName.charAt(i))) {
-				numberCount++;
-			}
-			if(Character.isSpace(productName.charAt(i))) {
-				spaceCount++;
-			}
-		}
+		    s += "^FO225,30,0"
+	    	   + "^A@N,36,32,E:ARI002.TTF" 
+	    	   + "^FD"+ line_1 +"^FS"
+	    	   + "^FO"+(160 + dots)+",70,0"
+	    	   + "^A@N,36,32,E:ARI002.TTF" 
+	    	   + "^FD"+ line_2 +"^FS";
+    }else {
+			int upperCaseCount = 0;
+			int lowerCaseCount = 0;
+			int numberCount = 0;
+			int spaceCount = 0;
 		
-		double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
-		int dots = (int)((1.0 - total)*648.0/2.0);
+			for(int j = 0; j < productName.length(); j++) {
+				if(Character.isUpperCase(productName.charAt(j))) {
+					upperCaseCount++;
+				}
+				if(Character.isLowerCase(productName.charAt(j))) {
+					lowerCaseCount++;
+				}
+			
+				if(Character.isDigit(productName.charAt(j))) {
+					numberCount++;
+				}
+				if(Character.isSpace(productName.charAt(j))) {
+					spaceCount++;
+				}
+			}
 		
-    	   	s+= "^FO"+(160 + dots)+",70,0"
-    	 		+ "^A@N,36,28,E:ARI002.TTF" 
-    	 		+ "^FD"+ productName +"^FS"    	 		
-    	 		+ "^FO30,150,0"
+			double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
+			int dots = (int)((1.0 - total)*648.0/2.0);
+    	
+		    s += "^FO"+(160 + dots)+",30,0"
+			   + "^A@N,36,32,E:ARI002.TTF" 
+			   + "^FD"+ productName +"^FS";
+	}
+		
+    	   	s+= "^FO30,150,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF"
     	 		+ "^FDCode No:^FS";
 		
 		if(itemCode.length()==10) {
 			String temp_1 = itemCode.substring(0, 4);
 			String temp_2 = itemCode.substring(4, 10);
-			s += "^FO210,138^BY3"
+			s += "^FO180,138^BY3"
 	    	  + "^BCN,68,N,N,Y"
 	    	  + "^FD>6 "+ temp_1 +">9"+ temp_2 +"^FS"	        	
-		      + "^FO385,215,0"
+		      + "^FO355,215,0"
 	    	  + "^A@N,30,28,E:TAH005.TTF" 
 	    	  + "^FD"+ itemCode +"^FS";
 		}else {			
-			s += "^FO210,138^BY3"
+			s += "^FO180,138^BY3"
 			  + "^BCN,68,N,N,Y"
 			  + "^FD"+ itemCode +"^FS"	        	
-			  + "^FO385,215,0"
+			  + "^FO355,215,0"
 			  + "^A@N,30,28,E:TAH005.TTF" 
 			  + "^FD"+ itemCode +"^FS";			
 		}
@@ -240,41 +232,43 @@ public class BulkProductLabel extends Label {
 	         s += "^FO30,260,0"
 	            + "^A@N,36,25,E:TAH005.TTF"
     	 		+ "^FDBatch No:^FS"
-    	 		+ "^FO255,248^BY3"
+    	 		+ "^FO180,248^BY3"
     	 		+ "^BCN,65,N,N,Y"
     	 		+ "^FD"+ batch +"^FS"
-    	 		+ "^FO350,318,0"
+    	 		+ "^FO275,318,0"
     	 		+ "^A@N,30,28,E:TAH005.TTF" 
     	 		+ "^FD"+ batch +"^FS"
     	 		+ "^FO30,365,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF" 
-    	 		+ "^FDQuantity:^FS"
-    	 		+ "^FO175,365,0"
+    	 		+ "^FDContents:^FS";
+	         
+	 		DecimalFormat formatter_1 = new DecimalFormat("###,###,###");
+	 		int contents = Integer.valueOf(quantity);
+	 		
+    	 	s	+="^FO175,365,0"
     	 		+ "^A@N,33,29,E:TAH005.TTF" 
-    	 		+ "^FD"+ quantity +"^FS"
-    	 		+ "^FO275,365,0"
+    	 		+ "^FD"+ formatter_1.format(contents) +"^FS"
+    	 		+ "^FO320,365,0"
     	 		+ "^A@N,33,29,E:TAH005.TTF" 
     	 		+ "^FDunits/carton^FS"
-    	 		+ "^FO480,365,0"
+    	 		+ "^FO480,415,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF" 
-    	 		+ "^FDCarton No:^FS"
-    	 		+ "^FO640,365,0"
+    	 		+ "^FDCarton No:^FS";
+    	 	
+    	 	DecimalFormat formatter_2 = new DecimalFormat("0000");
+    	 	int cart = Integer.valueOf(cartonNo);
+    	 	
+    	 	s	+="^FO640,415,0"
     	 		+ "^A@N,33,29,E:TAH005.TTF" 
-    	 		+ "^FD"+ cartonNo +"^FS"
+    	 		+ "^FD"+ formatter_2.format(cart) +"^FS"
     	 		+ "^FO30,415,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF" 
-    	 		+ "^FD"+ usebyformat +"^FS"
-	            + "^FO275,415,0"
+    	 		+ "^FDDOM:^FS"
+	            + "^FO175,415,0"
 	         	+ "^A@N,33,29,E:TAH005.TTF" 
-	         	+ "^FD"+ useBy +"^FS"
-    	 	    + "^FO480,415,0"
-    	 	    + "^A@N,36,25,E:TAH005.TTF"
-    	 		+ "^FDPacked by:^FS";
+	         	+ "^FD"+ useBy +"^FS";
 	         
-	         s  += "^FO640,415,0"
-	 	        + "^A@N,33,29,E:TAH005.TTF" 
-	 	        + "^FD"+ packedBy +"^FS"
-	            + "^FO30,455"
+	         s  +="^FO30,455"
 	    	 	+ "^GB760,10,5^FS";
     	 		
     	 		

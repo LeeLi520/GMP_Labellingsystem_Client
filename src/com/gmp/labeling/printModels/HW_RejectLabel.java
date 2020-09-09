@@ -169,8 +169,7 @@ public class HW_RejectLabel extends Label {
 			String dateData = dateFormat.format(currentDate);
 			rejectedDate = dateData;
 		}
-		String s = null;
-	       	   s ="^XA" +
+		String s ="^XA" +
 	       		  "^FO228,20"+ 
 	       		  "^A0N,25,35"+ 
 	       		  "^FDGMP Pharmaceuticals(HW)^FS"+

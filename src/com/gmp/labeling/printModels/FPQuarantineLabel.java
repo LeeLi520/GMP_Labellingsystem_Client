@@ -110,7 +110,7 @@ public class FPQuarantineLabel extends Label {
 			System.out.println("Unable to access machine name and ip.");
 		}
 		String log ="{"
-				+ "{labeltype:\"PalletLabel\"},"
+				+ "{labeltype:\"FPQuarantineLabel\"},"
 				+ "{title:\""+title+"\"},"
 				+ "{itemCode:\""+itemCode+"\"},"
 				+ "{productName:\""+productName+"\"},"
@@ -125,25 +125,21 @@ public class FPQuarantineLabel extends Label {
 
 	@Override
 	public String printZPLFormat() {
-		String s = "^XA"+
-				"^FO208,30"+ 
-	            "^A0N,30,45"+ 
-	            "^FDGMP Pharmaceuticals^FS";
-		
+		String s = "^XA";		
 		if(title.equals("Pharmaceutical")) {
-			s +="^FO285,60"+ 
-                "^A0N,25,36"+ 
+			s +="^FO228,20"+ 
+                "^A0N,50,60"+ 
                 "^FD"+title+"^FS";
 		}else {
-			s +="^FO255,60"+ 
-  	            "^A0N,25,36"+ 
+			s +="^FO168,20"+ 
+  	            "^A0N,50,60"+ 
 	            "^FD"+title+"^FS";
 		}
 		
-		if(productName.length()>38) {
+		if(productName.length()>43) {
 			String line_1;
 	 		String line_2;
-	 		int i = 38;
+	 		int i = 43;
 	 		char temp = productName.charAt(i);
 	 		while(temp!=' ') {
 	 			i--;
@@ -154,49 +150,49 @@ public class FPQuarantineLabel extends Label {
 	 			}
 	 		}
 	 		if(i == -1) {
-	 			line_1 = productName.substring(0,38);
-	 			line_2 = productName.substring(39,productName.length());
+	 			line_1 = productName.substring(0,43);
+	 			line_2 = productName.substring(44,productName.length());
 	 		}else {
 	 			line_1 = productName.substring(0, i);
 		 		line_2 = productName.substring(i+1, productName.length());
 	 		}	 		
-	 		s += "^FO60,120,0"
+	 		s += "^FO40,90,0"
 	 		   + "^A0N,28,35"
 	 		   + "^FDProduct:^FS"
-	 		   + "^FO200,120,0"
+	 		   + "^FO180,90,0"
 	 		   + "^A0N,28,35"
 	 		   + "^FD"+line_1+"^FS"
-	 		   + "^FO200,155,0"
+	 		   + "^FO180,125,0"
 	 		   + "^A0N,28,35"
 	 		   + "^FD"+line_2+"^FS";
 		}else {
-			s += "^FO60,120,0"
+			s += "^FO40,90,0"
 			   + "^A0N,28,35"
 			   + "^FDProduct:^FS"
-			   + "^FO200,120,0"
+			   + "^FO180,90,0"
 	 		   + "^A0N,28,35"
 	 		   + "^FD"+productName+"^FS";
 		}
 	    
-	    s += "^FO60,200,0"
+	    s += "^FO40,180,0"
         + "^A0N,28,35"
 	    + "^FDCode:^FS"
-	    + "^FO200,200,0"
+	    + "^FO180,180,0"
         + "^A0N,28,35"
 	    + "^FD"+itemCode+"^FS"
-	    + "^FO60,235,0"
+	    + "^FO40,220,0"
         + "^A0N,28,35"
 	    + "^FDContainer/Quantity:"+printQuantity+"^FS"
-	    + "^FO60,275,0"
+	    + "^FO40,260,0"
         + "^A0N,28,35"
 	    + "^FDBatch:^FS"
-	    + "^FO200,275,0"
+	    + "^FO180,260,0"
         + "^A0N,28,35"
 	    + "^FD"+batch+"^FS"
-	    + "^FO580,275,0"
+	    + "^FO580,260,0"
         + "^A0N,25,28"
 	    + "^FDPallet NO."+palletNo+"^FS"	    
-	    + "^FO265,330,0"
+	    + "^FO248,320,0"
         + "^A0N,60,60"
 	    + "^FDQUARANTINE^FS"
 	 	+ "^XZ";

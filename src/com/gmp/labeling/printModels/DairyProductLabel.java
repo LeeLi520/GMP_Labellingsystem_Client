@@ -184,7 +184,7 @@ public class DairyProductLabel extends Label {
 		int Com_dots = (int)((1.05 - Com_total)*648.0/2.0);
 		
 		    s +=   "^FO"+(80 + Com_dots)+",30,0"
-	    	 	 + "^A@N,36,38,E:ARI004.TTF" 
+		    	 + "^A@N,36,28,E:ARI002.TTF" 
 	    	 	 + "^FD"+ companyName +"^FS";
 		
 		
