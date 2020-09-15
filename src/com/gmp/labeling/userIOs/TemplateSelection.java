@@ -200,6 +200,9 @@ public class TemplateSelection extends JFrame {
                   case "BulkShipping":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("bulkshipper")))); 
                 	  break;
+                  case "SachetFDbagLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetfdbag")))); 
+                	  break;
 		    }
 		}
 				
@@ -309,6 +312,9 @@ public class TemplateSelection extends JFrame {
                   	  break;
                   case "BulkShipping":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("bulkshipper")))); 
+                	  break;
+                  case "SachetFDbagLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetfdbag")))); 
                 	  break;
 		    }
 			}
@@ -567,6 +573,13 @@ public class TemplateSelection extends JFrame {
 			                	  settings.setComponentPage(bulkproductlabel);
 			                	  bulkproductlabel.setLocationRelativeTo(null);
 			                	  bulkproductlabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "SachetFDbagLabel":
+			                	  SachetFDbagLabelIO sachetfdbaglabel = new SachetFDbagLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(sachetfdbaglabel);
+			                	  sachetfdbaglabel.setLocationRelativeTo(null);
+			                	  sachetfdbaglabel.setVisible(true);
 			                	  dispose();
 			                	  break;
 					    }
