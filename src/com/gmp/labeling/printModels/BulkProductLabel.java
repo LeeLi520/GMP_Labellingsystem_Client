@@ -171,10 +171,10 @@ public class BulkProductLabel extends Label {
 			double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
 			int dots = (int)((1.0 - total)*648.0/2.0);
 			
-		    s += "^FO225,30,0"
+		    s += "^FO210,30,0"
 	    	   + "^A@N,36,32,E:ARI002.TTF" 
 	    	   + "^FD"+ line_1 +"^FS"
-	    	   + "^FO"+(160 + dots)+",70,0"
+	    	   + "^FO"+(140 + dots)+",70,0"
 	    	   + "^A@N,36,32,E:ARI002.TTF" 
 	    	   + "^FD"+ line_2 +"^FS";
     }else {
@@ -202,7 +202,7 @@ public class BulkProductLabel extends Label {
 			double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
 			int dots = (int)((1.0 - total)*648.0/2.0);
     	
-		    s += "^FO"+(160 + dots)+",30,0"
+		    s += "^FO"+(140 + dots)+",30,0"
 			   + "^A@N,36,32,E:ARI002.TTF" 
 			   + "^FD"+ productName +"^FS";
 	}

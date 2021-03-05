@@ -30,7 +30,7 @@ import com.gmp.labeling.connections.RestConnection;
 import com.gmp.labeling.models.Product;
 import com.gmp.labeling.printModels.Label;
 import com.gmp.labeling.printModels.PrintingQueue;
-import com.gmp.labeling.printModels.UniversalProductLabel;
+import com.gmp.labeling.printModels.SachetFProductLabel;
 
 public class SachetProductLabelIO extends JFrame {
 
@@ -150,50 +150,61 @@ public class SachetProductLabelIO extends JFrame {
 		sachetProduct_batch.setColumns(10);
 		
 		JLabel sachetProduct_lbl_useBy = new JLabel("Use By:");
-		sachetProduct_lbl_useBy.setBounds(60, 220, 100, 20);
+		sachetProduct_lbl_useBy.setBounds(60, 220, 140, 20);
 		contentPane.add(sachetProduct_lbl_useBy);
 		
-		JRadioButton sachetProduct_rdbtn_useby = new JRadioButton("Use By");
-		sachetProduct_rdbtn_useby.addActionListener(new ActionListener() {
+		JComboBox sachetProduct_combox_useByFormat = new JComboBox();
+		sachetProduct_combox_useByFormat.setBounds(160, 180, 200, 20);
+		sachetProduct_combox_useByFormat.setModel(new DefaultComboBoxModel(new String[] {"Use By", "Date of Manufacture", "Exp Date", "Exp", "Expiry date", "DOM", "Best Before", "Use Before"}));
+		sachetProduct_combox_useByFormat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sachetProduct_lbl_useBy.setText("Use By:");
+				sachetProduct_lbl_useBy.setText(sachetProduct_combox_useByFormat.getSelectedItem().toString() + ":");
 			}
 		});
-		sachetProduct_rdbtn_useby.setBounds(160, 180, 80, 20);
-		sachetProduct_rdbtn_useby.setSelected(true);
-		contentPane.add(sachetProduct_rdbtn_useby);
+
+		contentPane.add(sachetProduct_combox_useByFormat);
 		
-		JRadioButton sachetProduct_rdbtn_expDate = new JRadioButton("Exp Date");
-		sachetProduct_rdbtn_expDate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sachetProduct_lbl_useBy.setText("Exp Date:");
-			}
-		});
-		sachetProduct_rdbtn_expDate.setBounds(240, 180, 90, 20);
-		contentPane.add(sachetProduct_rdbtn_expDate);
-		
-		JRadioButton sachetProduct_rdbtn_bestBefore = new JRadioButton("Best Before");
-		sachetProduct_rdbtn_bestBefore.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sachetProduct_lbl_useBy.setText("Best Before:");
-			}
-		});
-		sachetProduct_rdbtn_bestBefore.setBounds(330, 180, 100, 20);
-		contentPane.add(sachetProduct_rdbtn_bestBefore);
+//		JRadioButton sachetProduct_rdbtn_useby = new JRadioButton("Use By");
+//		sachetProduct_rdbtn_useby.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetProduct_lbl_useBy.setText("Use By:");
+//			}
+//		});
+//		sachetProduct_rdbtn_useby.setBounds(160, 180, 80, 20);
+//		sachetProduct_rdbtn_useby.setSelected(true);
+//		contentPane.add(sachetProduct_rdbtn_useby);
+//		
+//		JRadioButton sachetProduct_rdbtn_expDate = new JRadioButton("Exp Date");
+//		sachetProduct_rdbtn_expDate.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetProduct_lbl_useBy.setText("Exp Date:");
+//			}
+//		});
+//		sachetProduct_rdbtn_expDate.setBounds(240, 180, 90, 20);
+//		contentPane.add(sachetProduct_rdbtn_expDate);
+//		
+//		JRadioButton sachetProduct_rdbtn_bestBefore = new JRadioButton("Best Before");
+//		sachetProduct_rdbtn_bestBefore.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetProduct_lbl_useBy.setText("Best Before:");
+//			}
+//		});
+//		sachetProduct_rdbtn_bestBefore.setBounds(330, 180, 100, 20);
+//		contentPane.add(sachetProduct_rdbtn_bestBefore);
 		
 		JLabel sachetProduct_lbl_useByformat = new JLabel("Use By format:");
 		sachetProduct_lbl_useByformat.setBounds(60, 180, 100, 20);
 		contentPane.add(sachetProduct_lbl_useByformat);
 		
-		ButtonGroup useByformatGroup = new ButtonGroup();
-		useByformatGroup.add(sachetProduct_rdbtn_useby);
-		useByformatGroup.add(sachetProduct_rdbtn_expDate);
-		useByformatGroup.add(sachetProduct_rdbtn_bestBefore);
+//		ButtonGroup useByformatGroup = new ButtonGroup();
+//		useByformatGroup.add(sachetProduct_rdbtn_useby);
+//		useByformatGroup.add(sachetProduct_rdbtn_expDate);
+//		useByformatGroup.add(sachetProduct_rdbtn_bestBefore);
 		
 		
 		
 		sachetProduct_useBy = new JTextField();
-		sachetProduct_useBy.setBounds(160, 220, 180, 20);
+		sachetProduct_useBy.setBounds(200, 220, 140, 20);
 		contentPane.add(sachetProduct_useBy);
 		sachetProduct_useBy.setColumns(10);
 		
@@ -267,7 +278,7 @@ public class SachetProductLabelIO extends JFrame {
 						int temp_cartonQuantity = Integer.valueOf(sachetProduct_cartonQuantity.getText());							
 						while(temp_cartonQuantity>0) {
 								for(int i = temp_lblPerCarton; i>0; i--) {
-								    Label productLabel = new UniversalProductLabel(selectedCompanyName ,sachetProduct_combox_productName.getSelectedItem().toString(), sachetProduct_itemCode.getText(), sachetProduct_batch.getText(),
+								    Label productLabel = new SachetFProductLabel(selectedCompanyName ,sachetProduct_combox_productName.getSelectedItem().toString(), sachetProduct_itemCode.getText(), sachetProduct_batch.getText(),
 								    		productQuantity, String.valueOf(temp_startFrom), sachetProduct_lbl_useBy.getText(), dateResult, sachetProduct_shift.getText(), sachetProduct_temperature.getSelectedItem().toString(), "");
 								    printqueue.addLabelToQueue(productLabel);
 								}						

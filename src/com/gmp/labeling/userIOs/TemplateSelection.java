@@ -129,6 +129,8 @@ public class TemplateSelection extends JFrame {
 		          case "InterimApprovalLabel":
 		        	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("interimApproval"))));
 		        	  break;
+		          case "InterimApprovalLabel_forMaterials":
+		        	  break;
                   case "SpecialItemLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("specialitem"))));
 					  break;
@@ -203,6 +205,36 @@ public class TemplateSelection extends JFrame {
                   case "SachetFDbagLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetfdbag")))); 
                 	  break;
+                  case "HW_PremixPartLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("hw_premixpart"))));  
+                	  break;
+                  case "GelatineUsageRecordLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("gelatineusage_plain"))));  
+                	  break;
+                  case "DispensedMaterialLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("dispensedmaterial_plain"))));  
+                	  break;
+                  case "SanitizingEthanolLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sanitizingethanol_plain"))));  
+                	  break;
+                  case "ProductionInProcessLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("productioninprocess_plain"))));  
+                	  break;
+                  case "InProcessStatusLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("inprocessstatus_plain"))));  
+                	  break;
+                  case "RetentionLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("retention_plain"))));  
+                	  break;
+                  case "SoftGelCompositeSampleLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("softgelcompositesample_plain"))));  
+                	  break;
+                  case "SoftGelMicroSampleLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("softgelmicrosample_plain"))));  
+                	  break;
+                  case "SachetMilkPowderLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetmilkpowder"))));  
+                	  break;
 		    }
 		}
 				
@@ -241,6 +273,8 @@ public class TemplateSelection extends JFrame {
 		        	  break;
 		          case "InterimApprovalLabel":
 		        	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("interimApproval"))));
+		        	  break;
+		          case "InterimApprovalLabel_forMaterials":
 		        	  break;
                   case "SpecialItemLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("specialitem"))));
@@ -315,6 +349,36 @@ public class TemplateSelection extends JFrame {
                 	  break;
                   case "SachetFDbagLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetfdbag")))); 
+                	  break;
+                  case "HW_PremixPartLabel":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("hw_premixpart"))));  
+                	  break;
+                  case "GelatineUsageRecordLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("gelatineusage_plain"))));  
+                	  break;
+                  case "DispensedMaterialLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("dispensedmaterial_plain"))));  
+                	  break;
+                  case "SanitizingEthanolLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sanitizingethanol_plain"))));  
+                	  break;
+                  case "ProductionInProcessLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("productioninprocess_plain"))));  
+                	  break;
+                  case "InProcessStatusLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("inprocessstatus_plain"))));  
+                	  break;
+                  case "RetentionLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("retention_plain"))));  
+                	  break;
+                  case "SoftGelCompositeSampleLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("softgelcompositesample_plain"))));  
+                	  break;
+                  case "SoftGelMicroSampleLabel_Plain":
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("softgelmicrosample_plain"))));  
+                	  break;
+                  case "SachetMilkPowderLabel":
+                      templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetmilkpowder"))));  
                 	  break;
 		    }
 			}
@@ -412,6 +476,13 @@ public class TemplateSelection extends JFrame {
 					        	  settings.setComponentPage(interimApprovalLabel);
 					        	  interimApprovalLabel.setLocationRelativeTo(null);
 					        	  interimApprovalLabel.setVisible(true);
+					        	  dispose();
+					        	  break;
+					          case "InterimApprovalLabel_forMaterials":
+					        	  Interim_ApprovalForMaterialsLabelIO interimapprovalformaterials = new  Interim_ApprovalForMaterialsLabelIO(settings, printqueue);
+					        	  settings.setComponentPage(interimapprovalformaterials);
+					        	  interimapprovalformaterials.setLocationRelativeTo(null);
+					        	  interimapprovalformaterials.setVisible(true);
 					        	  dispose();
 					        	  break;
 					          case "SpecialItemLabel":
@@ -580,6 +651,76 @@ public class TemplateSelection extends JFrame {
 			                	  settings.setComponentPage(sachetfdbaglabel);
 			                	  sachetfdbaglabel.setLocationRelativeTo(null);
 			                	  sachetfdbaglabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "HW_PremixPartLabel":
+			                	  HW_PremixPartLabelIO hw_premixpartLabel = new HW_PremixPartLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(hw_premixpartLabel);
+			                	  hw_premixpartLabel.setLocationRelativeTo(null);
+			                	  hw_premixpartLabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "GelatineUsageRecordLabel_Plain":
+			                	  GelatineUsageRecordPlainLabelIO gelatineusagerecordlabel = new GelatineUsageRecordPlainLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(gelatineusagerecordlabel);
+			                	  gelatineusagerecordlabel.setLocationRelativeTo(null);
+			                	  gelatineusagerecordlabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "DispensedMaterialLabel_Plain":
+			                	  DispensedMaterialPlainLabelIO dispensedmateriallabel = new DispensedMaterialPlainLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(dispensedmateriallabel);
+			                	  dispensedmateriallabel.setLocationRelativeTo(null);
+			                	  dispensedmateriallabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "SanitizingEthanolLabel_Plain":
+			                	  SanitizingEthanolLabelIO sanitizingethanollabel = new SanitizingEthanolLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(sanitizingethanollabel);
+			                	  sanitizingethanollabel.setLocationRelativeTo(null);
+			                	  sanitizingethanollabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "ProductionInProcessLabel_Plain":
+			                	  ProductionInProcessPlainLabelIO productioninprocesslabel = new ProductionInProcessPlainLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(productioninprocesslabel);
+			                	  productioninprocesslabel.setLocationRelativeTo(null);
+			                	  productioninprocesslabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "InProcessStatusLabel_Plain":
+			                	  InProcessStatusLabelIO inprocessstatuslabel = new InProcessStatusLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(inprocessstatuslabel);
+			                	  inprocessstatuslabel.setLocationRelativeTo(null);
+			                	  inprocessstatuslabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "RetentionLabel_Plain":
+			                	  RetentionLabelIO retentionlabel = new RetentionLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(retentionlabel);
+			                	  retentionlabel.setLocationRelativeTo(null);
+			                	  retentionlabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "SoftGelCompositeSampleLabel_Plain":
+			                	  SoftGelCompositeSampleLabelIO softgetcompositelabel = new SoftGelCompositeSampleLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(softgetcompositelabel);
+			                	  softgetcompositelabel.setLocationRelativeTo(null);
+			                	  softgetcompositelabel.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "SoftGelMicroSampleLabel_Plain":
+			                	  SoftGelMicroSampleLabelIO softgetmicrosample = new SoftGelMicroSampleLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(softgetmicrosample);
+			                	  softgetmicrosample.setLocationRelativeTo(null);
+			                	  softgetmicrosample.setVisible(true);
+			                	  dispose();
+			                	  break;
+			                  case "SachetMilkPowderLabel":
+			                	  SachetMilkPowderLabelIO sachetmilkpowder = new SachetMilkPowderLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(sachetmilkpowder);
+			                	  sachetmilkpowder.setLocationRelativeTo(null);
+			                	  sachetmilkpowder.setVisible(true);
 			                	  dispose();
 			                	  break;
 					    }

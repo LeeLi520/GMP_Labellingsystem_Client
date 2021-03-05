@@ -51,6 +51,7 @@ public class SachetVGShipperLabelIO extends JFrame {
 	private String format;
 	private JTextField sachetVGProduct_shift;
 	private JTextField sachetVGProduct_batch;
+	private JTextField sachetVGProduct_btmMessage;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SachetVGShipperLabelIO(Settings settings, PrintingQueue printqueue) {
@@ -59,7 +60,7 @@ public class SachetVGShipperLabelIO extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DeviationLabelIO.class.getResource(connection.loadProperties().getProperty("logo"))));
 		products = inputItemdata(connection.loadProperties().getProperty("finishedProductList"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 530, 490);
+		setBounds(100, 100, 530, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -159,51 +160,118 @@ public class SachetVGShipperLabelIO extends JFrame {
 		sachetVGProduct_batch.setBounds(340, 140, 110, 20);
 		contentPane.add(sachetVGProduct_batch);
 		
+		JLabel sachetVGProduct_lbl_cartonNoStartFrom = new JLabel("Carton No Start from:");
+		sachetVGProduct_lbl_cartonNoStartFrom.setBounds(60, 300, 130, 20);
+		contentPane.add(sachetVGProduct_lbl_cartonNoStartFrom);
+		
+		sachetVGProduct_cartonNoStartFrom = new JTextField();
+		sachetVGProduct_cartonNoStartFrom.setBounds(194, 300, 60, 20);
+		contentPane.add(sachetVGProduct_cartonNoStartFrom);
+		sachetVGProduct_cartonNoStartFrom.setColumns(10);
+		
+		JLabel sachetVGProduct_lbl_LabelPerCarton = new JLabel("Labels Per Carton:");
+		sachetVGProduct_lbl_LabelPerCarton.setBounds(275, 300, 110, 20);
+		contentPane.add(sachetVGProduct_lbl_LabelPerCarton);
+		
+		sachetVGProduct_labelPerCarton = new JTextField();
+		sachetVGProduct_labelPerCarton.setToolTipText("def 1");
+		sachetVGProduct_labelPerCarton.setBounds(384, 300, 80, 20);
+		contentPane.add(sachetVGProduct_labelPerCarton);
+		sachetVGProduct_labelPerCarton.setColumns(10);
+		
+		JLabel sachetVGProduct_lbl_cartonCount = new JLabel("Carton Quantity:");
+		sachetVGProduct_lbl_cartonCount.setBounds(60, 340, 100, 20);
+		contentPane.add(sachetVGProduct_lbl_cartonCount);
+		
+		sachetVGProduct_cartonQuantity = new JTextField();
+		sachetVGProduct_cartonQuantity.setBounds(170, 340, 85, 20);
+		contentPane.add(sachetVGProduct_cartonQuantity);
+		sachetVGProduct_cartonQuantity.setColumns(10);
+		
+		JLabel sachetVGProduct_displayQuantity = new JLabel("Display Quantity:");
+		sachetVGProduct_displayQuantity.setBounds(60, 260, 100, 20);
+		contentPane.add(sachetVGProduct_displayQuantity);
+		
+		JLabel sachetVGProduct_unitDisplay = new JLabel("units/carton");
+		sachetVGProduct_unitDisplay.setFont(new Font("Tahoma", Font.BOLD, 11));
+		sachetVGProduct_unitDisplay.setBounds(210, 260, 90, 20);
+		contentPane.add(sachetVGProduct_unitDisplay);
+		contentPane.add(sachetVGProduct_cartonUnitQuantity);
+		
+		JLabel sachetVGProduct_lbl_shift = new JLabel("Shift:");
+		sachetVGProduct_lbl_shift.setBounds(338, 260, 46, 20);
+		contentPane.add(sachetVGProduct_lbl_shift);
+		
+		sachetVGProduct_shift = new JTextField();
+		sachetVGProduct_shift.setBounds(384, 260, 80, 20);
+		contentPane.add(sachetVGProduct_shift);
+		sachetVGProduct_shift.setColumns(10);
+		
+		JLabel sachetVGProduct_lbl_btmMessage = new JLabel("Bottom message:");
+		sachetVGProduct_lbl_btmMessage.setBounds(60, 380, 100, 20);
+		contentPane.add(sachetVGProduct_lbl_btmMessage);
+		
+		sachetVGProduct_btmMessage = new JTextField();
+		sachetVGProduct_btmMessage.setBounds(170, 380, 295, 20);
+		contentPane.add(sachetVGProduct_btmMessage);
+		sachetVGProduct_btmMessage.setColumns(10);
+			
 		JLabel sachetVGProduct_lbl_useBy = new JLabel("Use By:");
-		sachetVGProduct_lbl_useBy.setBounds(60, 220, 100, 20);
+		sachetVGProduct_lbl_useBy.setBounds(60, 220, 140, 20);
 		contentPane.add(sachetVGProduct_lbl_useBy);
 		
-		JRadioButton sachetVGProduct_rdbtn_useby = new JRadioButton("Use By");
-		sachetVGProduct_rdbtn_useby.addActionListener(new ActionListener() {
+		JComboBox sachetVGProduct_combox_useByFormat = new JComboBox();
+		sachetVGProduct_combox_useByFormat.setBounds(160, 180, 200, 20);
+		sachetVGProduct_combox_useByFormat.setModel(new DefaultComboBoxModel(new String[] {"Use By", "Date of Manufacture", "Exp Date", "Exp", "Expiry date", "DOM", "Best Before", "Use Before"}));
+		sachetVGProduct_combox_useByFormat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sachetVGProduct_lbl_useBy.setText("Use By:");
+				sachetVGProduct_lbl_useBy.setText(sachetVGProduct_combox_useByFormat.getSelectedItem().toString() + ":");
 			}
 		});
-		sachetVGProduct_rdbtn_useby.setBounds(160, 180, 80, 20);
-		sachetVGProduct_rdbtn_useby.setSelected(true);
-		contentPane.add(sachetVGProduct_rdbtn_useby);
+
+		contentPane.add(sachetVGProduct_combox_useByFormat);
 		
-		JRadioButton sachetVGProduct_rdbtn_expDate = new JRadioButton("Exp Date");
-		sachetVGProduct_rdbtn_expDate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sachetVGProduct_lbl_useBy.setText("Exp Date:");
-			}
-		});
-		sachetVGProduct_rdbtn_expDate.setBounds(240, 180, 90, 20);
-		contentPane.add(sachetVGProduct_rdbtn_expDate);
-		
-		JRadioButton sachetVGProduct_rdbtn_bestBefore = new JRadioButton("Best Before");
-		sachetVGProduct_rdbtn_bestBefore.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sachetVGProduct_lbl_useBy.setText("Best Before:");
-			}
-		});
-		sachetVGProduct_rdbtn_bestBefore.setBounds(330, 180, 100, 20);
-		contentPane.add(sachetVGProduct_rdbtn_bestBefore);
+//		JRadioButton sachetVGProduct_rdbtn_useby = new JRadioButton("Use By");
+//		sachetVGProduct_rdbtn_useby.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetVGProduct_lbl_useBy.setText("Use By:");
+//			}
+//		});
+//		sachetVGProduct_rdbtn_useby.setBounds(160, 180, 80, 20);
+//		sachetVGProduct_rdbtn_useby.setSelected(true);
+//		contentPane.add(sachetVGProduct_rdbtn_useby);
+//		
+//		JRadioButton sachetVGProduct_rdbtn_expDate = new JRadioButton("Exp Date");
+//		sachetVGProduct_rdbtn_expDate.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetVGProduct_lbl_useBy.setText("Exp Date:");
+//			}
+//		});
+//		sachetVGProduct_rdbtn_expDate.setBounds(240, 180, 90, 20);
+//		contentPane.add(sachetVGProduct_rdbtn_expDate);
+//		
+//		JRadioButton sachetVGProduct_rdbtn_bestBefore = new JRadioButton("Best Before");
+//		sachetVGProduct_rdbtn_bestBefore.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sachetVGProduct_lbl_useBy.setText("Best Before:");
+//			}
+//		});
+//		sachetVGProduct_rdbtn_bestBefore.setBounds(330, 180, 100, 20);
+//		contentPane.add(sachetVGProduct_rdbtn_bestBefore);
 		
 		JLabel sachetVGProduct_lbl_useByformat = new JLabel("Use By format:");
 		sachetVGProduct_lbl_useByformat.setBounds(60, 180, 100, 20);
 		contentPane.add(sachetVGProduct_lbl_useByformat);
 		
-		ButtonGroup useByformatGroup = new ButtonGroup();
-		useByformatGroup.add(sachetVGProduct_rdbtn_useby);
-		useByformatGroup.add(sachetVGProduct_rdbtn_expDate);
-		useByformatGroup.add(sachetVGProduct_rdbtn_bestBefore);
+//		ButtonGroup useByformatGroup = new ButtonGroup();
+//		useByformatGroup.add(sachetVGProduct_rdbtn_useby);
+//		useByformatGroup.add(sachetVGProduct_rdbtn_expDate);
+//		useByformatGroup.add(sachetVGProduct_rdbtn_bestBefore);
 		
 		
 		
 		sachetVGProduct_useBy = new JTextField();
-		sachetVGProduct_useBy.setBounds(160, 220, 180, 20);
+		sachetVGProduct_useBy.setBounds(200, 220, 140, 20);
 		contentPane.add(sachetVGProduct_useBy);
 		sachetVGProduct_useBy.setColumns(10);
 		
@@ -264,7 +332,7 @@ public class SachetVGShipperLabelIO extends JFrame {
 				dispose();
 			}
 		});
-		sachetVGProduct_btn_updateDB.setBounds(30, 380, 95, 20);
+		sachetVGProduct_btn_updateDB.setBounds(30, 430, 95, 20);
 		contentPane.add(sachetVGProduct_btn_updateDB);
 		
 		JButton sachetVGProduct_btn_print = new JButton("Print");
@@ -278,7 +346,7 @@ public class SachetVGShipperLabelIO extends JFrame {
 						while(temp_cartonQuantity>0) {
 								for(int i = temp_lblPerCarton; i>0; i--) {
 								    Label productLabel = new SachetVidaShipperLabel(selectedCompanyName ,sachetVGProduct_combox_productName.getSelectedItem().toString(), sachetVGProduct_itemCode.getText(), sachetVGProduct_workOrder.getText(), sachetVGProduct_batch.getText().toUpperCase(),
-								    		productQuantity, String.valueOf(temp_startFrom), sachetVGProduct_lbl_useBy.getText(), dateResult, sachetVGProduct_shift.getText(), sachetVGProduct_temperature.getSelectedItem().toString(), "");
+								    		productQuantity, String.valueOf(temp_startFrom), sachetVGProduct_lbl_useBy.getText(), dateResult, sachetVGProduct_shift.getText(), sachetVGProduct_temperature.getSelectedItem().toString(), sachetVGProduct_btmMessage.getText());
 								    printqueue.addLabelToQueue(productLabel);
 								}						
 								temp_cartonQuantity--;
@@ -297,7 +365,7 @@ public class SachetVGShipperLabelIO extends JFrame {
 				}
 			}
 		});
-		sachetVGProduct_btn_print.setBounds(260, 380, 95, 20);
+		sachetVGProduct_btn_print.setBounds(260, 430, 95, 20);
 		contentPane.add(sachetVGProduct_btn_print);
 		
 		JButton sachetVGProduct_btn_settings = new JButton("Settings");
@@ -308,17 +376,17 @@ public class SachetVGShipperLabelIO extends JFrame {
 				dispose();
 			}
 		});
-		sachetVGProduct_btn_settings.setBounds(145, 380, 95, 20);
+		sachetVGProduct_btn_settings.setBounds(145, 430, 95, 20);
 		contentPane.add(sachetVGProduct_btn_settings);
 		
 		JLabel label = new JLabel("Copyright \u00A9 2018 GMP IT Department. All Rights Reserved.");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label.setBounds(214, 420, 280, 20);
+		label.setBounds(214, 470, 280, 20);
 		contentPane.add(label);
 		
 		JLabel label_1 = new JLabel("Designed and Implemented by Lee.L");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label_1.setBounds(314, 405, 170, 20);
+		label_1.setBounds(314, 455, 170, 20);
 		contentPane.add(label_1);
 		
 		JButton sachetVGProduct_btn_back = new JButton("Back");
@@ -328,58 +396,10 @@ public class SachetVGShipperLabelIO extends JFrame {
 				dispose();
 			}
 		});
-		sachetVGProduct_btn_back.setBounds(375, 380, 95, 20);
+		sachetVGProduct_btn_back.setBounds(375, 430, 95, 20);
 		contentPane.add(sachetVGProduct_btn_back);
 		
-		JLabel sachetVGProduct_lbl_cartonNoStartFrom = new JLabel("Carton No Start from:");
-		sachetVGProduct_lbl_cartonNoStartFrom.setBounds(60, 300, 130, 20);
-		contentPane.add(sachetVGProduct_lbl_cartonNoStartFrom);
-		
-		sachetVGProduct_cartonNoStartFrom = new JTextField();
-		sachetVGProduct_cartonNoStartFrom.setBounds(194, 300, 60, 20);
-		contentPane.add(sachetVGProduct_cartonNoStartFrom);
-		sachetVGProduct_cartonNoStartFrom.setColumns(10);
-		
-		JLabel sachetVGProduct_lbl_LabelPerCarton = new JLabel("Labels Per Carton:");
-		sachetVGProduct_lbl_LabelPerCarton.setBounds(275, 300, 110, 20);
-		contentPane.add(sachetVGProduct_lbl_LabelPerCarton);
-		
-		sachetVGProduct_labelPerCarton = new JTextField();
-		sachetVGProduct_labelPerCarton.setToolTipText("def 1");
-		sachetVGProduct_labelPerCarton.setBounds(384, 300, 80, 20);
-		contentPane.add(sachetVGProduct_labelPerCarton);
-		sachetVGProduct_labelPerCarton.setColumns(10);
-		
-		JLabel sachetVGProduct_lbl_cartonCount = new JLabel("Carton Quantity:");
-		sachetVGProduct_lbl_cartonCount.setBounds(60, 340, 100, 20);
-		contentPane.add(sachetVGProduct_lbl_cartonCount);
-		
-		sachetVGProduct_cartonQuantity = new JTextField();
-		sachetVGProduct_cartonQuantity.setBounds(160, 340, 95, 20);
-		contentPane.add(sachetVGProduct_cartonQuantity);
-		sachetVGProduct_cartonQuantity.setColumns(10);
-		
-		JLabel sachetVGProduct_displayQuantity = new JLabel("Display Quantity:");
-		sachetVGProduct_displayQuantity.setBounds(60, 260, 100, 20);
-		contentPane.add(sachetVGProduct_displayQuantity);
-		
-		JLabel sachetVGProduct_unitDisplay = new JLabel("units/carton");
-		sachetVGProduct_unitDisplay.setFont(new Font("Tahoma", Font.BOLD, 11));
-		sachetVGProduct_unitDisplay.setBounds(210, 260, 90, 20);
-		contentPane.add(sachetVGProduct_unitDisplay);
-		contentPane.add(sachetVGProduct_cartonUnitQuantity);
-		
-		JLabel sachetVGProduct_lbl_shift = new JLabel("Shift:");
-		sachetVGProduct_lbl_shift.setBounds(338, 260, 46, 20);
-		contentPane.add(sachetVGProduct_lbl_shift);
-		
-		sachetVGProduct_shift = new JTextField();
-		sachetVGProduct_shift.setBounds(384, 260, 80, 20);
-		contentPane.add(sachetVGProduct_shift);
-		sachetVGProduct_shift.setColumns(10);
-		
 
-				
 	}
 	
 	public boolean dataValidation(String itemCode, String productName, String workOrder, String batch, String quantity, String cartonFrom, String labelPerCarton, String cartonQuantity, String useBy, String dateResult, Settings settings) {
@@ -417,35 +437,36 @@ public class SachetVGShipperLabelIO extends JFrame {
 				    "Inane error",
 				    JOptionPane.ERROR_MESSAGE);
 			return false;
-		}else if(batch.length()!=9) {
-			JOptionPane.showMessageDialog(settings.getComponentPage(),
-				    "Batch format error.",
-				    "Inane error",
-				    JOptionPane.ERROR_MESSAGE);
-			return false;
-		}else {
-			char[] temp = batch.toCharArray();
-			String title = String.valueOf(temp[0])+String.valueOf(temp[1])+String.valueOf(temp[2])+String.valueOf(temp[3])+String.valueOf(temp[4]);
-			title = title.toUpperCase();
-			String number = String.valueOf(temp[5])+String.valueOf(temp[6])+String.valueOf(temp[7])+String.valueOf(temp[8]);
-			if(!title.equals("VGGMP")) {
-				JOptionPane.showMessageDialog(settings.getComponentPage(),
-					    "Batch format error.",
-					    "Inane error",
-					    JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-			try {
-				@SuppressWarnings("unused")
-				int test = Integer.valueOf(number);
-			}catch(Exception e) {
-				JOptionPane.showMessageDialog(settings.getComponentPage(),
-					    "Batch format error.",
-					    "Inane error",
-					    JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
 		}
+//		}else if(batch.length()!=9) {
+//			JOptionPane.showMessageDialog(settings.getComponentPage(),
+//				    "Batch format error.",
+//				    "Inane error",
+//				    JOptionPane.ERROR_MESSAGE);
+//			return false;
+//		}else {
+//			char[] temp = batch.toCharArray();
+//			String title = String.valueOf(temp[0])+String.valueOf(temp[1])+String.valueOf(temp[2])+String.valueOf(temp[3])+String.valueOf(temp[4]);
+//			title = title.toUpperCase();
+//			String number = String.valueOf(temp[5])+String.valueOf(temp[6])+String.valueOf(temp[7])+String.valueOf(temp[8]);
+//			if(!title.equals("VGGMP")) {
+//				JOptionPane.showMessageDialog(settings.getComponentPage(),
+//					    "Batch format error.",
+//					    "Inane error",
+//					    JOptionPane.ERROR_MESSAGE);
+//				return false;
+//			}
+//			try {
+//				@SuppressWarnings("unused")
+//				int test = Integer.valueOf(number);
+//			}catch(Exception e) {
+//				JOptionPane.showMessageDialog(settings.getComponentPage(),
+//					    "Batch format error.",
+//					    "Inane error",
+//					    JOptionPane.ERROR_MESSAGE);
+//				return false;
+//			}
+//		}
 		if(!useBy.equals("")) {
 			char[] temp = useBy.toCharArray();
 			if(temp.length == 10) {

@@ -183,8 +183,8 @@ public class DairyProductLabel extends Label {
 		double Com_total = (Com_upperCaseCount*upperWeight)+(Com_lowerCaseCount*lowerWeight)+(Com_numberCount*numberWeight)+(Com_spaceCount*spaceWeight);
 		int Com_dots = (int)((1.05 - Com_total)*648.0/2.0);
 		
-		    s +=   "^FO"+(80 + Com_dots)+",30,0"
-		    	 + "^A@N,36,28,E:ARI002.TTF" 
+		    s +=   "^FO"+(100 + Com_dots)+",30,0"
+		    	 + "^A@N,34,34,E:ARI004.TTF" 
 	    	 	 + "^FD"+ companyName +"^FS";
 		
 		
@@ -211,8 +211,8 @@ public class DairyProductLabel extends Label {
 		double total = (upperCaseCount*upperWeight)+(lowerCaseCount*lowerWeight)+(numberCount*numberWeight)+(spaceCount*spaceWeight);
 		int dots = (int)((1.05 - total)*648.0/2.0);
 		
-    	   	s+= "^FO"+(68 + dots)+",70,0"
-   	    	 	+ "^A@N,34,34,E:ARI004.TTF" 
+    	   	s+= "^FO"+(100 + dots)+",70,0"
+   	    	 	+ "^A@N,30,30,E:ARI004.TTF" 
     	 		+ "^FD"+ productName +"^FS"    	 		
     	 		+ "^FO30,155,0"
     	 		+ "^A@N,32,24,E:TAH005.TTF"

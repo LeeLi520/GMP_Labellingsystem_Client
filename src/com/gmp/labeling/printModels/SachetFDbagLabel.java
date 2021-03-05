@@ -48,10 +48,10 @@ public class SachetFDbagLabel extends Label {
 	            +"^FDShift: ^FS"
 	            +"^FO300,460" 
 	            +"^AEN,32,15"  
-	            +"^FDM/S  N/S^FS"
-	            +"^FO540,460" 
+	            +"^FDM/A/N^FS"
+	            +"^FO480,460" 
 	            +"^AEN,32,15"  
-	            +"^FDDate:^FS"
+	            +"^FDDate/Time:^FS"
 		        + "^XZ" ;
 		return s;
 	}

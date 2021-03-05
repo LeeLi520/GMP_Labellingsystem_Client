@@ -1,5 +1,11 @@
 package com.gmp.labeling.printModels;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Interim_ApprovalForMaterials extends Label {
 	
 	private String itemCode;
@@ -66,12 +72,43 @@ public class Interim_ApprovalForMaterials extends Label {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		String printMachineName = null;
+		String printMachineIP = null;
+		
+		try {
+			InetAddress inetAddress = InetAddress. getLocalHost();
+			
+			printMachineName = inetAddress.getHostName();
+			printMachineIP = inetAddress.getHostAddress();
+		} catch (UnknownHostException e) {
+			System.out.println("Unable to access machine name and ip.");
+		}
+		if(date.equals("")) {
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date currentDate = new Date();
+			String dateData = dateFormat.format(currentDate);
+			date = dateData;
+		}
+		String log = "{"
+				+ "{labeltype:\"InterimApprovalLabelforMaterials\"},"
+				+ "{itemCode:\""+itemCode+"\"},"
+				+ "{batch:\""+batch+"\"},"
+				+ "{Signature:\""+signature+"\"},"
+				+ "{date:\""+date+"\"},"
+				+ "{printMachineName:\""+printMachineName+"\"},"
+		        + "{printMachineIp:\""+printMachineIP+"\"}"
+				+ "}";
+		return log;
 	}
 
 	@Override
 	public String printZPLFormat() {
+		if(date.equals("")) {
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date currentDate = new Date();
+			String dateData = dateFormat.format(currentDate);
+			date = dateData;
+		}
         String s = "^XA" +
 	             "^FO200,20"+ 
 	             "^A0N,35,50"+ 
@@ -88,16 +125,16 @@ public class Interim_ApprovalForMaterials extends Label {
 	             "^FO255,195"+ 
 	             "^A@N,32,38,E:ARI002.TTF"+ 
 	             "^FDBEFORE EACH USE^FS"+
-	             "^FO40,240"+ 
+	             "^FO30,240"+ 
 	             "^A@N,35,42,E:ARI002.TTF"+ 
 	             "^FDCode: "+ itemCode +"^FS"+
-	             "^FO410,240"+ 
+	             "^FO520,240"+ 
 	             "^A@N,35,42,E:ARI002.TTF"+ 
 	             "^FDBatch No: "+ batch +"^FS"+
-	             "^FO40,310"+ 
+	             "^FO30,310"+ 
 	             "^A@N,35,42,E:ARI002.TTF"+ 
 	             "^FDSign: "+ signature +"^FS"+
-	             "^FO410,310"+ 
+	         	 "^FO520,310"+ 
 	             "^A@N,35,42,E:ARI002.TTF"+ 
 	             "^FDDate: "+ date +"^FS"+
 	             "^XZ";

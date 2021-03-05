@@ -3,6 +3,7 @@ package com.gmp.labeling.connections;
 public class DateFormatModifier {
 	
 	public static String changeDate(String source, String format) {
+		if(source.length()==10) {
 		char[] temp = source.toCharArray();
 		String day = String.valueOf(temp[0])+String.valueOf(temp[1]);
 		String month = String.valueOf(temp[3]) + String.valueOf(temp[4]);
@@ -85,6 +86,23 @@ public class DateFormatModifier {
 			return null;
 		}else {
 			return null;
-		}		
+		}
+		}else if(source.length()==7){
+			char[] temp = source.toCharArray();
+			String month = String.valueOf(temp[0]) + String.valueOf(temp[1]);
+			String year = String.valueOf(temp[3])+ String.valueOf(temp[4])+ String.valueOf(temp[5])+ String.valueOf(temp[6]);
+			
+			String result;
+			char[] temp_format = format.toCharArray();
+			String firstValue = String.valueOf(temp_format[0]).replaceAll("([a-z])", "$1").toUpperCase();
+			if(firstValue.equals("Y")) {
+				result = year + "/" + month;
+			}else {
+				result = month + "/" + year;
+			}
+			return result;
+		}else {
+			return null;
+		}
 	}
 }
