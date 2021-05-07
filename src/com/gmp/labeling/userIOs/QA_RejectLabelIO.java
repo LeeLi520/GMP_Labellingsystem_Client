@@ -148,7 +148,7 @@ public class QA_RejectLabelIO extends JFrame {
 		JButton qaRejectLabel_btn_Update = new JButton("Update");
 		qaRejectLabel_btn_Update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

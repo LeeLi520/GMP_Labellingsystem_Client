@@ -89,7 +89,7 @@ public class SachetSemiProductLabelIO extends JFrame {
 		contentPane.add(sachetSemiP_lbl_useByFormat);
 		
 		JLabel sachetSemiP_lbl_useBy = new JLabel("Use By:");
-		sachetSemiP_lbl_useBy.setBounds(50, 220, 100, 20);
+		sachetSemiP_lbl_useBy.setBounds(50, 220, 140, 20);
 		contentPane.add(sachetSemiP_lbl_useBy);
 		
 		JComboBox sachetSemiP_userByformat = new JComboBox();

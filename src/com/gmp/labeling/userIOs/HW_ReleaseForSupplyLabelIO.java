@@ -254,7 +254,7 @@ public class HW_ReleaseForSupplyLabelIO extends JFrame {
 		JButton releaseForSupply_btn_update = new JButton("Update");
 		releaseForSupply_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

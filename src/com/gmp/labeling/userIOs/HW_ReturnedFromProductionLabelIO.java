@@ -226,7 +226,7 @@ public class HW_ReturnedFromProductionLabelIO extends JFrame {
 		JButton returnedFromProduction_btn_update = new JButton("Update");
 		returnedFromProduction_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

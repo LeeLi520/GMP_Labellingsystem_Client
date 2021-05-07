@@ -178,10 +178,10 @@ public class RestConnection {
 		new Thread(new DownloadUpdate(updateLink, out)).start();		
 	}
 	
-	public void FtpUpdateFiles(Settings settings) {
+	public void FtpUpdateFiles(Settings settings, String targetFile, String saveFile) {
 		try {
 			synchronized(this) {				
-				 new Thread(new FTPDownloader("ftp.gmpadmin.online", "pronto@gmpadmin.online", "pro8863ftP")).start();				 
+				 new Thread(new FTPDownloader("ftp.gmpadmin.online", "pronto@gmpadmin.online", "pro8863ftP", targetFile, saveFile)).start();				 
 			}	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

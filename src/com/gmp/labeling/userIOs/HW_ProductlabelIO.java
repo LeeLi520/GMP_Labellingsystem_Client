@@ -280,7 +280,7 @@ public class HW_ProductlabelIO extends JFrame {
 		JButton product_btn_Update = new JButton("Update");
 		product_btn_Update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

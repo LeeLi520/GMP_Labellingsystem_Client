@@ -217,10 +217,7 @@ public class SachetSemiProductLabel extends Label {
     	 		+ "^FD"+ cartonNo +"^FS"
     	 		+ "^FO30,415,0"
     	 		+ "^A@N,36,25,E:TAH005.TTF" 
-    	 		+ "^FD"+ useByformat +"^FS"
-    	 		+ "^FO205,415,0"
-    	 		+ "^A@N,36,25,E:TAH005.TTF" 
-    	 		+ "^FD"+ useBy +"^FS";
+    	 		+ "^FD"+ useByformat +" "+ useBy +"^FS";
 
 	         
 	    	 	Date systemDate = new Date();	

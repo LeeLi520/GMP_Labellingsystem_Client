@@ -235,6 +235,9 @@ public class TemplateSelection extends JFrame {
                   case "SachetMilkPowderLabel":
                 	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetmilkpowder"))));  
                 	  break;
+                  case "HW_DamagedLabel": 
+                  	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("hw_damaged")))); 
+                	  break;
 		    }
 		}
 				
@@ -379,6 +382,9 @@ public class TemplateSelection extends JFrame {
                 	  break;
                   case "SachetMilkPowderLabel":
                       templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("sachetmilkpowder"))));  
+                	  break;
+                  case "HW_DamagedLabel": 
+                	  templateSelection_lbl_labelPreview.setIcon(new ImageIcon(Login.class.getResource(restconnection.loadProperties().getProperty("hw_damaged")))); 
                 	  break;
 		    }
 			}
@@ -722,6 +728,12 @@ public class TemplateSelection extends JFrame {
 			                	  sachetmilkpowder.setLocationRelativeTo(null);
 			                	  sachetmilkpowder.setVisible(true);
 			                	  dispose();
+			                	  break;
+			                  case "HW_DamagedLabel": 
+			                	  HW_DamagedLabelIO damagedlabel = new HW_DamagedLabelIO(settings, printqueue);
+			                	  settings.setComponentPage(damagedlabel);
+			                	  damagedlabel.setLocationRelativeTo(null);
+			                	  damagedlabel.setVisible(true);
 			                	  break;
 					    }
 					}

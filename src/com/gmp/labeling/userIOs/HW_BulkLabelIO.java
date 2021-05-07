@@ -254,7 +254,7 @@ public class HW_BulkLabelIO extends JFrame {
 		JButton bulkLabel_btn_update = new JButton("Update");
 		bulkLabel_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

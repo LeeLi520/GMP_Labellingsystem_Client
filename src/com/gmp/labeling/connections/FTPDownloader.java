@@ -18,11 +18,15 @@ public class FTPDownloader implements Runnable{
 	private String host;
 	private String user;
 	private String pwd;
+	private String targetFile;
+	private String saveFile;
 
-    public FTPDownloader(String host, String user, String pwd) throws Exception {
+    public FTPDownloader(String host, String user, String pwd, String targetFile, String saveFile) throws Exception {
     	this.host = host;
     	this.user = user;
     	this.pwd = pwd;
+    	this.targetFile = targetFile;
+    	this.saveFile = saveFile;
     	connection = new RestConnection();
         ftp = new FTPClient();
         ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
@@ -64,8 +68,9 @@ public class FTPDownloader implements Runnable{
 			downloadDataFileIO.setLocationRelativeTo(null);
 			downloadDataFileIO.setVisible(true);
             com.gmp.labeling.connections.FTPDownloader ftpDownloader =
-                new com.gmp.labeling.connections.FTPDownloader(this.host, this.user , this.pwd);
-            ftpDownloader.downloadFile("stk.csv", connection.loadProperties().getProperty("materiallistpath"));
+                new com.gmp.labeling.connections.FTPDownloader(this.host, this.user , this.pwd, this.targetFile, this.saveFile);
+//            ftpDownloader.downloadFile("stk.csv", connection.loadProperties().getProperty("materiallistpath"));
+            ftpDownloader.downloadFile(this.targetFile, connection.loadProperties().getProperty(this.saveFile));
             downloadDataFileIO.finished();
             ftpDownloader.disconnect();
             downloadDataFileIO.closeWindow();

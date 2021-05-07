@@ -151,7 +151,7 @@ public class QA_ApprovedForFProcessLabelIO extends JFrame {
 		JButton approvedForFProcess_btn_Update = new JButton("Update");
 		approvedForFProcess_btn_Update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

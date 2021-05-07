@@ -234,7 +234,7 @@ public class CustomizedPrinting_DeviationLabelIO extends JFrame {
 		JButton deviation_btn_update = new JButton("Update");
 		deviation_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings, "stk.csv", "materiallistpath");
 				dispose();
 			}
 		});

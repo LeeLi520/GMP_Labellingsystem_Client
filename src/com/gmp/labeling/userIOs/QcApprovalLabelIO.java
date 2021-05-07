@@ -239,7 +239,7 @@ public class QcApprovalLabelIO extends JFrame {
 		JButton qcApproval_btn_update = new JButton("Update");
 		qcApproval_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}

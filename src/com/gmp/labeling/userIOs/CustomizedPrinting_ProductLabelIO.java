@@ -260,7 +260,7 @@ public class CustomizedPrinting_ProductLabelIO extends JFrame {
 		JButton product_btn_update = new JButton("Update");
 		product_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stk.csv", "materiallistpath");
 				dispose();
 			}
 		});

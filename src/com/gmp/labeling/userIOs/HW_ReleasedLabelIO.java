@@ -53,7 +53,7 @@ public class HW_ReleasedLabelIO extends JFrame {
 		setTitle("Labeling System version"+connection.loadProperties().getProperty("version"));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductLabelIO.class.getResource(connection.loadProperties().getProperty("logo"))));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 460);
+		setBounds(100, 100, 500, 500);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,16 +83,25 @@ public class HW_ReleasedLabelIO extends JFrame {
 		contentPane.add(released_lbl_quantity);
 		
 		JLabel released_lbl_releasedDate = new JLabel("Released date:");
-		released_lbl_releasedDate.setBounds(50, 220, 90, 20);
+		released_lbl_releasedDate.setBounds(50, 260, 90, 20);
 		contentPane.add(released_lbl_releasedDate);
 		
 		JLabel released_lbl_expiredDate = new JLabel("Expired date:");
-		released_lbl_expiredDate.setBounds(50, 260, 90, 20);
+		released_lbl_expiredDate.setBounds(50, 300, 90, 20);
 		contentPane.add(released_lbl_expiredDate);
 		
 		JLabel released_lbl_printCount = new JLabel("Printing Count:");
-		released_lbl_printCount.setBounds(50, 300, 90, 20);
+		released_lbl_printCount.setBounds(50, 340, 90, 20);
 		contentPane.add(released_lbl_printCount);
+		
+		JLabel released_lbl_storageType = new JLabel("Storage type:");
+		released_lbl_storageType.setBounds(50, 220, 90, 20);
+		contentPane.add(released_lbl_storageType);
+		
+		JComboBox released_storageType = new JComboBox();
+		released_storageType.setModel(new DefaultComboBoxModel(new String[] {"General","Refrigerator","Freezer"}));
+		released_storageType.setBounds(160, 220, 180, 20);
+		contentPane.add(released_storageType);
 		
 		JLabel released_lbl_itemUnit = new JLabel("");
 		released_lbl_itemUnit.setBounds(340, 180, 80, 20);
@@ -115,21 +124,21 @@ public class HW_ReleasedLabelIO extends JFrame {
 		released_quantity.setColumns(10);
 		
 		released_releasedDate = new JTextField();
-		released_releasedDate.setBounds(160, 220, 180, 20);
+		released_releasedDate.setBounds(160, 260, 180, 20);
 		contentPane.add(released_releasedDate);
 		released_releasedDate.setColumns(10);
 		
 		released_expiredDate = new JTextField();
-		released_expiredDate.setBounds(160, 260, 180, 20);
+		released_expiredDate.setBounds(160, 300, 180, 20);
 		contentPane.add(released_expiredDate);
 		released_expiredDate.setColumns(10);
 		
 		released_printingCount = new JTextField();
-		released_printingCount.setBounds(160, 300, 180, 20);
+		released_printingCount.setBounds(160, 340, 180, 20);
 		contentPane.add(released_printingCount);
 		released_printingCount.setColumns(10);
 		
-		materials = inputItemdata(connection.loadProperties().getProperty("materiallistpath"));
+		materials = inputItemdata(connection.loadProperties().getProperty("materialdetaillistpath"));
 
 		String[] sarray = new String[materials.size()];
 		int i = 0;
@@ -190,7 +199,7 @@ public class HW_ReleasedLabelIO extends JFrame {
 				dispose();
 			}
 		});
-		released_btn_settings.setBounds(30, 340, 90, 20);
+		released_btn_settings.setBounds(30, 380, 90, 20);
 		contentPane.add(released_btn_settings);
 		
 		JButton released_btn_print = new JButton("Print");
@@ -200,7 +209,7 @@ public class HW_ReleasedLabelIO extends JFrame {
 							int printNumber = Integer.valueOf(released_printingCount.getText());
 							int i = 0;
 							while(i<printNumber) {
-								printqueue.addLabelToQueue(new HW_ReleasedLabel(released_itemCode.getText(), released_itemName.getSelectedItem().toString(), released_gin.getText(), released_quantity.getText(), itemUnit, settings.getSetting().getLogined_user(), released_releasedDate.getText(),
+								printqueue.addLabelToQueue(new HW_ReleasedLabel(released_itemCode.getText(), released_itemName.getSelectedItem().toString(), released_gin.getText(), released_storageType.getSelectedItem().toString(),released_quantity.getText(), itemUnit, settings.getSetting().getLogined_user(), released_releasedDate.getText(),
 										released_expiredDate.getText()));
 								i++;
 							}
@@ -216,18 +225,18 @@ public class HW_ReleasedLabelIO extends JFrame {
 						}				
 			}
 		});
-		released_btn_print.setBounds(140, 340, 90, 20);
+		released_btn_print.setBounds(140, 380, 90, 20);
 		contentPane.add(released_btn_print);
 		
 		JButton released_btn_update = new JButton("Update");
 		released_btn_update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				connection.FtpUpdateFiles(settings);
+				connection.FtpUpdateFiles(settings,"stkv2.csv", "materialdetaillistpath");
 				settings.getTmpltSelectionPage().setVisible(true);
 				dispose();
 			}
 		});
-		released_btn_update.setBounds(250, 340, 90, 20);
+		released_btn_update.setBounds(250, 380, 90, 20);
 		contentPane.add(released_btn_update);
 		
 		JButton released_btn_back = new JButton("Back");
@@ -238,18 +247,18 @@ public class HW_ReleasedLabelIO extends JFrame {
 				dispose();
 			}
 		});
-		released_btn_back.setBounds(360, 340, 90, 20);
+		released_btn_back.setBounds(360, 380, 90, 20);
 		contentPane.add(released_btn_back);
 		
-		JLabel label = new JLabel("Designed and Implemented by Lee.L");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label.setBounds(300, 375, 170, 20);
-		contentPane.add(label);
+		JLabel released_lbl_copyright_1 = new JLabel("Designed and Implemented by Lee.L");
+		released_lbl_copyright_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		released_lbl_copyright_1.setBounds(300, 415, 170, 20);
+		contentPane.add(released_lbl_copyright_1);
 		
-		JLabel label_1 = new JLabel("Copyright \u00A9 2018 GMP IT Department. All Rights Reserved.");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label_1.setBounds(200, 390, 280, 20);
-		contentPane.add(label_1);
+		JLabel released_lbl_copyright_2 = new JLabel("Copyright \u00A9 2018 GMP IT Department. All Rights Reserved.");
+		released_lbl_copyright_2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		released_lbl_copyright_2.setBounds(200, 430, 280, 20);
+		contentPane.add(released_lbl_copyright_2);
 		
 
 		released_btn_check.setBounds(340, 60, 70, 20);
@@ -265,7 +274,7 @@ public class HW_ReleasedLabelIO extends JFrame {
 		});
 		released_btn_info_releasedDate.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 14));
 		released_btn_info_releasedDate.setBackground(Color.LIGHT_GRAY);
-		released_btn_info_releasedDate.setBounds(340, 220, 20, 20);
+		released_btn_info_releasedDate.setBounds(340, 260, 20, 20);
 		contentPane.add(released_btn_info_releasedDate);
 		
 		Button released_btn_info_expiredDate = new Button("i");
@@ -278,7 +287,7 @@ public class HW_ReleasedLabelIO extends JFrame {
 		});
 		released_btn_info_expiredDate.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 14));
 		released_btn_info_expiredDate.setBackground(Color.LIGHT_GRAY);
-		released_btn_info_expiredDate.setBounds(340, 260, 20, 20);
+		released_btn_info_expiredDate.setBounds(340, 300, 20, 20);
 		contentPane.add(released_btn_info_expiredDate);
 		
 
