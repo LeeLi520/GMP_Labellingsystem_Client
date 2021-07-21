@@ -160,17 +160,17 @@ public class FPQuarantineLabel extends Label {
 	 		   + "^A0N,28,35"
 	 		   + "^FDProduct:^FS"
 	 		   + "^FO180,90,0"
-	 		   + "^A0N,28,35"
+	 		   + "^A0N,28,32"
 	 		   + "^FD"+line_1+"^FS"
 	 		   + "^FO180,125,0"
-	 		   + "^A0N,28,35"
+	 		   + "^A0N,28,32"
 	 		   + "^FD"+line_2+"^FS";
 		}else {
 			s += "^FO40,90,0"
 			   + "^A0N,28,35"
 			   + "^FDProduct:^FS"
 			   + "^FO180,90,0"
-	 		   + "^A0N,28,35"
+	 		   + "^A0N,28,32"
 	 		   + "^FD"+productName+"^FS";
 		}
 	    
